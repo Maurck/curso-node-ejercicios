@@ -5,11 +5,15 @@ const fs = require("fs");
  * @param {number} base
  * @returns El nombre del archivo creado
  */
-const crearArchivo = async (base = 5) => {
-  salida = obtenerCadenaMultiplicacion(base);
-  console.log(salida);
+const crearArchivo = async (base = 5, listar = false, hasta = 10) => {
+  salida = obtenerCadenaMultiplicacion(base, hasta);
+  
+  if(listar){
+    console.log(salida);
+  }
+
   try {
-    let nombreArchivo = `tabla-${base}.txt`;
+    let nombreArchivo = `salida/tabla-${base}.txt`;
     fs.writeFileSync(nombreArchivo, salida);
     return nombreArchivo;
   } catch (e) {
@@ -22,9 +26,9 @@ const crearArchivo = async (base = 5) => {
  * @param {number} base
  * @returns La cadena de la multiplicación
  */
-const obtenerCadenaMultiplicacion = (base) => {
+const obtenerCadenaMultiplicacion = (base, hasta) => {
   let salida = "";
-  for (let i = 1; i <= 10; i++) {
+  for (let i = 1; i <= hasta; i++) {
     salida += `${base} x ${i} = ${base * i}\n`;
   }
   return salida;
